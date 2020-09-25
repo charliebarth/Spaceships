@@ -42,13 +42,15 @@ class UsersController < ApplicationController
   # PATCH: /users/5
   patch "/users/:id" do
     @user = User.find(session[:user_id])
-    
+    @user.update(username: params[:username], email: params[:email], password: params[:password])
     redirect "/users/#{@user.id}"
   end
   
   # DELETE: /delete_current_user
   delete "/users/:id/delete" do
-    redirect "/users"
+    @user = User.find(session[:user_id])
+    @user.destroy
+    redirect "/"
   end
 
   get "/login" do

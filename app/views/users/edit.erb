@@ -1,5 +1,10 @@
 <h1>Edit Your Information</h1>
 
+<p>Your Username: <%= @user.username %></p>
+<br>
+<p>Your Email: <%= @user.email %></p>
+<br>
+
 <form action="/users/<%= @user.id %>" method="post">
   <input type="hidden" name="_method" value="patch">
 
@@ -8,3 +13,11 @@
   <input type="password" name="password" id="password" placeholder="password">
   <input type="submit" name="submit" id="submit" value="Edit">
 </form>
+
+<br>
+
+<h1>Delete Your User</h1>
+<form action="/users/<%= @user.id %>/delete" method="post">
+  <input type="hidden" name="_method" value="DELETE">
+  <input type="submit" id="delete" value="Delete">
+</form> 
