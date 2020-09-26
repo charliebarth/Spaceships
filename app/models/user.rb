@@ -3,5 +3,5 @@ class User < ActiveRecord::Base
     has_many :spaceships
     
     validates :username, :password, :email, presence: true
-
+    validates :username, :password, :email, uniqeness: true
 end

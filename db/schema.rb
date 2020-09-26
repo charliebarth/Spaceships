@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 20200923003930) do
     t.string   "name"
     t.string   "ship_type"
     t.string   "description"
-    t.integer  "owner_id"
+    t.integer  "user_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end

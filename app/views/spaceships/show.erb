@@ -1,0 +1,27 @@
+<h1><%= @spaceship.name %></h1>
+
+<br>
+
+<h3>Ship Type:</h3>
+<p><%= @spaceship.ship_type%></p>
+
+<br>
+<h3>Description:</h3>
+<p><%= @spaceship.description%></p>
+
+<br>
+
+<a href="/spaceships/<%= @spaceship.id %>/edit">Edit Spaceship</a>
+
+<br>
+<br>
+
+<a href="/users/<%=@user.id%>">Homepage</a>
+
+<br>
+<br>
+
+<form action="/spaceships/<%= @spaceship.id %>/delete" method="post">
+  <input type="hidden" name="_method" value="delete">
+  <input type="submit" value="Delete Spaceship">
+</form>

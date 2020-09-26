@@ -1,0 +1,26 @@
+<h2>Weclome <%=@user.username%>!</h2>
+<h4>Your Spaceships:</h4>
+
+<% if @s_ships.empty? %>
+
+  <h3>Hey <%= @user.username%>, it looks like you haven't created any spaceships yet! Create a new spaceship <a href="/spaceships/new">here</a></h3>
+
+<% end %>
+
+<ol>
+
+  <% @s_ships.each do |ship| %>
+
+  <li>
+  <p><%= ship.name %>: <%= ship.ship_type %> - <a href="/spaceships/<%= ship.id%>">View</a></li></p> 
+  
+
+  <% end %>
+</ol>
+
+<a href="/users/<%=@user.id%>">Homepage</a>
+
+<br>
+<br>
+
+<a href="/spaceships/new">Create A New Spaceship</a>

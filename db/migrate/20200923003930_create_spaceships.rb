@@ -4,7 +4,7 @@ class CreateSpaceships < ActiveRecord::Migration
       t.string :name
       t.string :ship_type
       t.string :description
-      t.integer :owner_id
+      t.integer :user_id
 
       t.timestamps null: false
     end
