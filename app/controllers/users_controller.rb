@@ -1,11 +1,6 @@
 class UsersController < ApplicationController
 
-  # GET: /users
-  # get "/users" do
-  #   erb :"/users/index.html"
-  # end
-  
-  # GET: /signup
+
   get "/users/new" do
     if logged_in?
       @user = User.find(session[:user_id])
@@ -14,8 +9,7 @@ class UsersController < ApplicationController
       erb :"/users/create_user"
     end
   end
-  
-  # POST: /create_new_user
+
   post "/users" do
     user = User.new(username: params[:username], email: params[:email], password: params[:password])
     
@@ -26,27 +20,23 @@ class UsersController < ApplicationController
       redirect '/users/new'
     end
   end
-  
-  # GET: /show_current_user
+
   get "/users/:id" do
     @user = User.find(session[:user_id])
     erb :"/users/show"
   end
-  
-  # GET: /edit_user
+
   get "/users/:id/edit" do
     @user = User.find(session[:user_id])
     erb :"/users/edit"
   end
-  
-  # PATCH: /users/5
+
   patch "/users/:id" do
     @user = User.find(session[:user_id])
     @user.update(username: params[:username], email: params[:email], password: params[:password])
     redirect "/users/#{@user.id}"
   end
-  
-  # DELETE: /delete_current_user
+
   delete "/users/:id/delete" do
     @user = User.find(session[:user_id])
     @user.destroy
