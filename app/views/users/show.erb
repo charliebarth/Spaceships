@@ -1,8 +1,8 @@
-<h1>Weclome <%=@user.username%>!</h1>
+<h1>Weclome <%=current_user.username%>!</h1>
 
 
 <p><a href="/logout">Logout</a></p>
 
 <p><a href="/spaceships">Show Your Spaceships</a></p>
 
-<p><a href="/users/<%=@user.id%>/edit">Edit Your Information</a></p>
+<p><a href="/users/<%=current_user.id%>/edit">Edit Your Information</a></p>

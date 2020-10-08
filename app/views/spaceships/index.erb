@@ -1,9 +1,9 @@
-<h2>Weclome <%=@user.username%>!</h2>
+<h2>Weclome <%=current_user.username%>!</h2>
 <h4>Your Spaceships:</h4>
 
 <% if @s_ships.empty? %>
 
-  <h3>Hey <%= @user.username%>, it looks like you haven't created any spaceships yet! Create a new spaceship <a href="/spaceships/new">here</a></h3>
+  <h3>Hey <%= current_user.username%>, it looks like you haven't created any spaceships yet! Create a new spaceship <a href="/spaceships/new">here</a></h3>
 
 <% end %>
 
@@ -18,7 +18,7 @@
   <% end %>
 </ol>
 
-<a href="/users/<%=@user.id%>">Homepage</a>
+<a href="/users/<%=current_user.id%>">Homepage</a>
 
 <br>
 <br>

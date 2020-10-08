@@ -24,9 +24,16 @@ class ApplicationController < Sinatra::Base
     end
   end
 
+  private
   def redirect_if_logged_out
     if !logged_in?
       redirect "/login"
+    end
+  end
+
+  def redirect_if_not_authorized
+    if current_user.id != @spaceship.user_id
+      redirect "/spaceships"
     end
   end
 

@@ -2,7 +2,7 @@ class SpaceshipsController < ApplicationController
 
   
   get "/spaceships" do
-    @user = current_user
+    redirect_if_logged_out
     @s_ships = current_user.spaceships
     erb :"/spaceships/index"
   end
@@ -22,15 +22,16 @@ class SpaceshipsController < ApplicationController
   end
 
   get "/spaceships/:id" do
-    @user = current_user
+    redirect_if_logged_out
     @spaceship = Spaceship.find(params[:id])
+    redirect_if_not_authorized
     erb :"/spaceships/show"
   end
 
   get "/spaceships/:id/edit" do
     if logged_in?
-      @user = current_user
       @spaceship = Spaceship.find(params[:id])
+      redirect_if_not_authorized
       erb :"/spaceships/edit"
     else
       redirect "/login"
@@ -38,13 +39,17 @@ class SpaceshipsController < ApplicationController
   end
 
   patch "/spaceships/:id" do
+    redirect_if_logged_out
     @spaceship = Spaceship.find(params[:id])
+    redirect_if_not_authorized
     @spaceship.update(name: params[:name], ship_type: params[:ship_type], description: params[:description])
     redirect "/spaceships/#{@spaceship.id}"
   end
 
   delete "/spaceships/:id/delete" do
+    redirect_if_logged_out
     @spaceship = Spaceship.find(params[:id])
+    redirect_if_not_authorized
     if @spaceship && @spaceship.user == current_user
       @spaceship.destroy
     end

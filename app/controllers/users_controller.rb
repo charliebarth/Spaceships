@@ -3,8 +3,7 @@ class UsersController < ApplicationController
 
   get "/users/new" do
     if logged_in?
-      @user = User.find(session[:user_id])
-      redirect "/users/#{@user.id}"
+      redirect "/users/#{current_user.id}"
     else
       erb :"/users/create_user"
     end
@@ -22,31 +21,26 @@ class UsersController < ApplicationController
   end
 
   get "/users/:id" do
-    @user = User.find(session[:user_id])
     erb :"/users/show"
   end
 
   get "/users/:id/edit" do
-    @user = User.find(session[:user_id])
     erb :"/users/edit"
   end
 
   patch "/users/:id" do
-    @user = User.find(session[:user_id])
-    @user.update(username: params[:username], email: params[:email], password: params[:password])
-    redirect "/users/#{@user.id}"
+    current_user.update(username: params[:username], email: params[:email], password: params[:password])
+    redirect "/users/#{current_user.id}"
   end
 
   delete "/users/:id/delete" do
-    @user = User.find(session[:user_id])
-    @user.destroy
+    current_user.destroy
     redirect "/"
   end
 
   get "/login" do
     if logged_in?
-      @user = User.find(session[:user_id])
-      redirect "/users/#{@user.id}"
+      redirect "/users/#{current_user.id}"
     else
       erb :"/users/login"
     end
